@@ -94,6 +94,7 @@ a.icon-link,
     vertical-align: middle;
     text-decoration: none;
     transition: color 0.2s ease;
+    cursor: pointer;
 }
 
 .icon-link.active {

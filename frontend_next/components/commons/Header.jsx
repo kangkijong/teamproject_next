@@ -3,11 +3,11 @@
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { usePathname, useRouter } from "next/navigation";
-import { FaHeadset, FaUser, FaBars, FaTimes, FaCartArrowDown, FaSignInAlt, FaSignOutAlt } from "react-icons/fa";
+import { FaHeadset, FaUser, FaBars, FaTimes, FaCartArrowDown, FaSignInAlt, FaSignOutAlt, FaComments } from "react-icons/fa";
 import { useAuthStore } from "@/store/authStore.js";   // ← Zustand store import
 import Swal from "sweetalert2";
 
-// import Chatbot from "@/components/support/Chatbot";
+import { Chatbot } from "@/components/support/Chatbot";
 // import { getLogout } from "@/feature/auth/authAPI";
 
 export default function Header() {
@@ -128,14 +128,22 @@ export default function Header() {
 
                         {/* 자전거 대여 */}
                         <li onMouseEnter={handleMouseEnterOther}>
-                            <Link href="/rental" onClick={closeMobileMenu}>
+                            <Link
+                                href="/rental"
+                                className={pathname === "/rental" ? "active" : ""}
+                                onClick={closeMobileMenu}
+                            >
                                 자전거 대여
                             </Link>
                         </li>
 
                         {/* 여행지 추천 */}
                         <li onMouseEnter={handleMouseEnterOther}>
-                            <Link href="/travel" onClick={closeMobileMenu}>
+                            <Link
+                                href="/travel"
+                                className={pathname === "/travel" ? "active" : ""}
+                                onClick={closeMobileMenu}
+                            >
                                 여행지 추천
                             </Link>
                         </li>
@@ -145,11 +153,18 @@ export default function Header() {
                 {/* 우측 아이콘 메뉴 */}
                 <div className="header-right">
 
-                    <Link href="/cart" className="icon-link" onClick={handleCartClick}>
+                    <Link
+                        href="/cart"
+                        className={`icon-link ${pathname === "/cart" ? "active" : ""}`}
+                        onClick={handleCartClick}
+                    >
                         <FaCartArrowDown className="icon" />
                     </Link>
 
-                    <Link href="/support" className="icon-link">
+                    <Link
+                        href="/support"
+                        className={`icon-link ${pathname.startsWith("/support") ? "active" : ""}`}
+                    >
                         <FaHeadset className="icon" />
                     </Link>
 
@@ -157,11 +172,14 @@ export default function Header() {
                         className={`icon-link ${showChatbot ? "active" : ""}`}
                         onClick={() => setShowChatbot(!showChatbot)}
                     >
-                        💬
+                        <FaComments />
                     </button>
 
                     {isLogin && (
-                        <Link href="/mypage" className="icon-link">
+                        <Link
+                            href="/mypage"
+                            className={`icon-link ${pathname.startsWith("/mypage") ? "active" : ""}`}
+                        >
                             <FaUser className="icon" />
                         </Link>
                     )}
@@ -202,7 +220,7 @@ export default function Header() {
                 )}
             </header>
 
-            {/*{showChatbot && <Chatbot onClose={() => setShowChatbot(false)} />}*/}
+            {showChatbot && <Chatbot onClose={() => setShowChatbot(false)} />}
 
             {menuOpen && isMobile && (
                 <div className="dim" onClick={closeMobileMenu}></div>

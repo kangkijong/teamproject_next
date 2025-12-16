@@ -154,7 +154,7 @@ export function Chatbot({ onClose }) {
     --------------------------------*/
     const goToLink = (url) => {
         const finalUrl = url.startsWith("/") ? url : `/${url}`;
-        navigate(finalUrl);
+        router.push(finalUrl); // ✅ Next.js 이동
     };
 
     return (

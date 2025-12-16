@@ -6,7 +6,7 @@ import "@/styles/home.css";
 import "@/styles/purchaseheader.css";
 import "@/styles/support.css";
 import "@/styles/board/board.css"
-import "@/styles/board/board_write.css"
+import "@/styles/board/board_list.css"
 import "@/styles/board/board_detail.css"
 import "@/styles/board/board_write.css"
 
